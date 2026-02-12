@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Para Mi Niña</title>
+
+    <style>
+
+        body {
+
+            margin: 0; padding: 0; height: 100vh;
+
+            display: flex; justify-content: center; align-items: center;
+
+            background: radial-gradient(circle, #1a0a0a 0%, #000000 100%);
+
+            color: #fff; font-family: 'Georgia', serif;
+
+            overflow: hidden; touch-action: manipulation;
+
+        }
+
+
+
+        /* Pantalla de Inicio */
+
+        #pantallaInicio {
+
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+
+            background: #000; z-index: 100;
+
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+
+        }
+
+
+
+        .btn-start {
+
+            padding: 20px 40px; font-size: 1.2rem; background: #b71c1c;
+
+            color: white; border: none; border-radius: 50px; cursor: pointer;
+
+            box-shadow: 0 0 25px rgba(183, 28, 28, 0.5); font-weight: bold;
+
+        }
+
+
+
+        /* Lluvia de corazones rojos */
+
+        .heart-particle {
+
+            position: absolute; top: -10%;
+
+            z-index: 1; animation: fall linear forwards;
+
+            user-select: none;
+
+        }
+
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
+
+
+
+        /* La Carta */
+
+        .card {
+
+            display: none; z-index: 10; width: 85%; max-width: 420px;
+
+            padding: 25px; background: rgba(0, 0, 0, 0.6);
+
+            backdrop-filter: blur(15px); border: 1px solid rgba(183, 28, 28, 0.3);
+
+            border-radius: 20px; text-align: center;
+
+            animation: fadeIn 1.5s ease;
+
+        }
+
+
+
+        h1 { font-size: 1.4rem; color: #b71c1c; letter-spacing: 2px; margin: 10px 0; text-transform: uppercase; }
+
+       
+
+        .carta-texto {
+
+            font-style: italic; line-height: 1.6; color: #f0f0f0;
+
+            text-align: center; font-size: 0.95rem; margin-bottom: 15px;
+
+        }
+
+
+
+        .btns-container {
+
+            margin-top: 20px; height: 60px;
+
+            display: flex; justify-content: center; align-items: center;
+
+            gap: 20px; position: relative;
+
+        }
+
+
+
+        button.opcion {
+
+            padding: 12px 20px; border: none; border-radius: 5px;
+
+            font-weight: bold; cursor: pointer; transition: 0.2s;
+
+            font-size: 0.85rem; position: absolute; min-width: 120px;
+
+        }
+
+
+
+        #siBtn { background: #b71c1c; color: white; left: 5%; }
+
+        #noBtn { background: #333; color: #fff; right: 5%; }
+
+
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+    </style>
+
+</head>
+
+<body>
+
+
+
+    <div id="pantallaInicio" onclick="comenzar()">
+
+        <div style="font-size: 40px; margin-bottom: 10px;">❤️</div>
+
+        <button class="btn-start">START ❤️</button>
+
+        <p style="margin-top: 20px; font-size: 0.8rem; color: #888;">(Sube el volumen, mi vida)</p>
+
+    </div>
+
+
+
+    <div class="card" id="mainCard">
+
+        <audio id="audioPlayer" loop preload="auto">
+
+            <source src="gardenias '87.mp3.mp3" type="audio/mpeg">
+
+        </audio>
+
+
+
+        <h1>Gardenias '87</h1>
+
+       
+
+        <div class="carta-texto" id="cartaTexto"></div>
+
+
+
+        <div class="btns-container" id="areaBotones">
+
+            <button id="siBtn" class="opcion" onclick="aceptar()">SÍ, ACEPTO ❤️</button>
+
+            <button id="noBtn" class="opcion" onmouseover="intercambiar()" onclick="intercambiar()">NO</button>
+
+        </div>
+
+
+
+        <div id="mensajeFinal" style="display:none; margin-top: 20px; animation: fadeIn 1s forwards;">
+
+            <p style="font-size: 1.2rem; color: #b71c1c; font-weight: bold;">¡TE AMO, MI VIDA! ❤️</p>
+
+            <p style="font-size: 0.8rem; color: #888;">"Escucha la cancion completa, te amo muchisimo, mi niña de ojitos preciosos, nunca lo dudes, amor"</p>
+
+        </div>
+
+    </div>
+
+
+
+    <script>
+
+        const textoCompleto = `Mi amor, <br>
+
+            Dicen que las gardenias son símbolo de pureza y de un amor secreto, pero lo que siento por ti ya no cabe en un secreto. He buscado en todo el mundo algo que se compare a tu brillo, y me di cuenta de que <b>todo lo bonito de este mundo eres tú.</b> <br><br>
+
+            Cada vez que escucho esta canción, no puedo evitar pensar en ti. Sus notas y sus letras ahora te pertenecen, <b>mi niña</b>, porque eres mi refugio y mi paz.<br><br>
+
+            <i>"Y te regalo mis gardenias, pa' que adornes tu jardín..."</i><br><br>
+
+            Como dice la canción, quiero regalarte todo lo que soy. Porque tú eres lo mejor que me ha pasado en la vida, lo mejor de este mundo entero. No existe nadie como tú, y cada día me enamoro más de tus ojos color café, que cuando te miro me provoca esa sensacion que nada más en el mundo me puede dar, los cuáles tengo la suerte de que se fijaron en mi y ahora solo me miran a mi, también, de tu forma de ser, de como me tratas (que me enamora cada dia mas), de cuando tomas mi mano, y de cuando me pones apodos lindos como: amor o mi vida, de cuando hacemos contacto visual y me pierdo en tu mirada, de cuando nos quedamos en silencio mirandonos a los ojos fijamente sin decir nada, de todo lo que eres.<br><br>
+
+            ¿Quieres ser mi San Valentín?`;
+
+
+
+        function escribirTexto() {
+
+            const elemento = document.getElementById('cartaTexto');
+
+            let i = 0;
+
+            const velocidad = 50; // milisegundos por carácter
+
+
+
+            function escribir() {
+
+                if (i < textoCompleto.length) {
+
+                    elemento.innerHTML = textoCompleto.substring(0, i + 1);
+
+                    i++;
+
+                    setTimeout(escribir, velocidad);
+
+                }
+
+            }
+
+            
+
+            escribir();
+
+        }
+
+
+
+        function comenzar() {
+
+            document.getElementById('pantallaInicio').style.display = 'none';
+
+            document.getElementById('mainCard').style.display = 'block';
+
+            
+
+            const audio = document.getElementById('audioPlayer');
+
+            audio.volume = 1.0;
+
+            
+
+            // Intentar reproducir con manejo de promesa
+
+            const playPromise = audio.play();
+
+            
+
+            if (playPromise !== undefined) {
+
+                playPromise.then(() => {
+
+                    // Reproducción exitosa
+
+                }).catch(error => {
+
+                    // Si falla, intentar de nuevo en 500ms
+
+                    setTimeout(() => audio.play(), 500);
+
+                });
+
+            }
+
+            
+
+            // Iniciar el efecto de escritura
+
+            escribirTexto();
+
+            
+
+            setInterval(crearCorazon, 400);
+
+        }
+
+
+
+        function intercambiar() {
+
+            const si = document.getElementById('siBtn');
+
+            const no = document.getElementById('noBtn');
+
+            
+
+            // Intercambio simple de posiciones en el flex
+
+            if (si.style.left === '5%') {
+
+                si.style.left = 'auto'; si.style.right = '5%';
+
+                no.style.right = 'auto'; no.style.left = '5%';
+
+            } else {
+
+                si.style.right = 'auto'; si.style.left = '5%';
+
+                no.style.left = 'auto'; no.style.right = '5%';
+
+            }
+
+        }
+
+
+
+        function aceptar() {
+
+            document.getElementById('areaBotones').style.display = 'none';
+
+            document.getElementById('mensajeFinal').style.display = 'block';
+
+            for(let i=0; i<80; i++) {
+
+                setTimeout(crearCorazon, i * 50);
+
+            }
+
+        }
+
+
+
+        function crearCorazon() {
+
+            const hearts = ['❤️', '💖', '💘', '💝', '🌹'];
+
+            const colors = ['#ff0000', '#d32f2f', '#b71c1c', '#ff5252', '#880e4f'];
+
+            const h = document.createElement('div');
+
+            h.className = 'heart-particle';
+
+            h.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+
+            h.style.left = Math.random() * 100 + 'vw';
+
+            h.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+            h.style.fontSize = Math.random() * 20 + 15 + 'px';
+
+            h.style.animationDuration = (Math.random() * 3 + 2) + 's';
+
+            h.style.opacity = Math.random() * 0.5 + 0.5;
+
+            document.body.appendChild(h);
+
+            setTimeout(() => h.remove(), 5000);
+
+        }
+
+    </script>
+
+</body>
+
+</html>
